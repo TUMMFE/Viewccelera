@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/About_256.png</file>
+        <file>Images/Absolute_256.png</file>
+        <file>Images/Cancel_256.png</file>
+        <file>Images/First_256.png</file>
+        <file>Images/Last_256.png</file>
+        <file>Images/Minus_256.png</file>
+        <file>Images/Open_256.png</file>
+        <file>Images/Plus_256.png</file>
+        <file>Images/Save_256.png</file>
+        <file>Images/Stash_256.png</file>
+        <file>Images/ViewCcelera_256.ico</file>
+        <file>Images/XAxis_256.png</file>
+        <file>Images/YAxis_256.png</file>
+        <file>Images/ZAxis_256.png</file>
+        <file>Images/Offset_256.png</file>
+        <file>Images/Bar_256.png</file>
+        <file>Images/Gravity_256.png</file>
+        <file>Images/Next_256.png</file>
+        <file>Images/Previous_256.png</file>
+        <file>Images/SavePart_256.png</file>
+        <file>Images/SavePicture_256.png</file>
+        <file>Images/SaveStash_256.png</file>
+        <file>Images/Theta_256.png</file>
+        <file>Images/XYZAxis_256.png</file>
+        <file>Images/ZoomMinus_256.png</file>
+        <file>Images/ZoomPlus_256.png</file>
+        <file>Images/ZoomReset_256.png</file>
+        <file>Images/Delete_256.png</file>
+        <file>Images/AVD_Export_256.png</file>
+        <file>Images/Acceleration_256.png</file>
+        <file>Images/Vel_Loc_256.png</file>
+    </qresource>
+</RCC>

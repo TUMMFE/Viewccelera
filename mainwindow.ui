@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1555</width>
+    <height>514</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Viewccelera - The Accelera Viewer</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/Images/ViewCcelera_256.ico</normaloff>:/Images/ViewCcelera_256.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>-1</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBarGeneral">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="actionExportData"/>
+   <addaction name="actionExportPicture"/>
+   <addaction name="actionShowDataDock"/>
+   <addaction name="actionAbout"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarDetailedChart">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionFirstEvent"/>
+   <addaction name="actionPreviousEvent"/>
+   <addaction name="actionNextEvent"/>
+   <addaction name="actionLastEvent"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarPlotData">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionAddXDirection"/>
+   <addaction name="actionAddYDirection"/>
+   <addaction name="actionAddZDirection"/>
+   <addaction name="actionAddAbsolutValue"/>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget">
+   <property name="minimumSize">
+    <size>
+     <width>91</width>
+     <height>254</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Data Analysis</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QTableWidget" name="analysisResultTable"/>
+     </item>
+     <item>
+      <widget class="QListWidget" name="analyzedFramesList"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QToolButton" name="deleteButton">
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/Images/Delete_256.png</normaloff>:/Images/Delete_256.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>48</width>
+           <height>48</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+    <zorder>analyzedFramesList</zorder>
+    <zorder>analysisResultTable</zorder>
+   </widget>
+  </widget>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/Open_256.png</normaloff>:/Images/Open_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open an Accelera file</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+O</string>
+   </property>
+  </action>
+  <action name="actionFirstEvent">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/First_256.png</normaloff>:/Images/First_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>FirstEvent</string>
+   </property>
+   <property name="shortcut">
+    <string>Up</string>
+   </property>
+  </action>
+  <action name="actionPreviousEvent">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/Previous_256.png</normaloff>:/Images/Previous_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>PreviousEvent</string>
+   </property>
+   <property name="shortcut">
+    <string>Left</string>
+   </property>
+  </action>
+  <action name="actionNextEvent">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/Next_256.png</normaloff>:/Images/Next_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>NextEvent</string>
+   </property>
+   <property name="shortcut">
+    <string>Right</string>
+   </property>
+  </action>
+  <action name="actionLastEvent">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/Last_256.png</normaloff>:/Images/Last_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>LastEvent</string>
+   </property>
+   <property name="shortcut">
+    <string>Down</string>
+   </property>
+  </action>
+  <action name="actionAddXDirection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/XAxis_256.png</normaloff>:/Images/XAxis_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddXDirection</string>
+   </property>
+  </action>
+  <action name="actionAddYDirection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/YAxis_256.png</normaloff>:/Images/YAxis_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddYDirection</string>
+   </property>
+  </action>
+  <action name="actionAddZDirection">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/ZAxis_256.png</normaloff>:/Images/ZAxis_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddZDirection</string>
+   </property>
+  </action>
+  <action name="actionAddAbsolutValue">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/Absolute_256.png</normaloff>:/Images/Absolute_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>AddAbsolutValue</string>
+   </property>
+  </action>
+  <action name="actionExportPicture">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/SavePicture_256.png</normaloff>:/Images/SavePicture_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>ExportPicture</string>
+   </property>
+  </action>
+  <action name="actionShowDataDock">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/Bar_256.png</normaloff>:/Images/Bar_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>ShowDataDock</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/About_256.png</normaloff>:/Images/About_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionExportData">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Images/SavePart_256.png</normaloff>:/Images/SavePart_256.png</iconset>
+   </property>
+   <property name="text">
+    <string>ExportStash</string>
+   </property>
+  </action>
+  <zorder>dockWidget</zorder>
+ </widget>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
