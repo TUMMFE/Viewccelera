@@ -189,11 +189,11 @@ void DataFile::saveRebasedVectors(QString filename) {
     int size = time.size();
     file->open(QFile::WriteOnly | QFile::Text);
     QString line;
-    line = "time (s); ax (m/s^2); ay (m/s^2); az (m/s^2); |a| (m/s^2); T (°C)\n";
+    line = "time (s), ax (m/s^2), ay (m/s^2), az (m/s^2), |a| (m/s^2), T (°C)\n";
     out << line;
 
     for (int i = 0; i< size; i++) {
-        line = QString::number(time[i])+";"+QString::number(xAcceleration[i])+";"+QString::number(yAcceleration[i])+";"+QString::number(zAcceleration[i])+";"+QString::number(absAcceleration[i])+";"+QString::number(temperature[i])+"\n";
+        line = QString::number(time[i])+","+QString::number(xAcceleration[i])+","+QString::number(yAcceleration[i])+","+QString::number(zAcceleration[i])+","+QString::number(absAcceleration[i])+","+QString::number(temperature[i])+"\n";
         out << line;
         auto progress = (i*100)/size;
         emit progressSavingData(progress);
