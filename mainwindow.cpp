@@ -86,7 +86,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     //todo: replace once Jonathan is finished
-    connect(this, &MainWindow::analyzeRequest, this, &MainWindow::analyzeFinished);
+    analyser_ = new Analyser();
+    connect(this, &MainWindow::analyzeRequest, analyser_, &Analyser::startAnalysis);
+    connect(analyser_, &Analyser::analysisFinishied, this, &MainWindow::analyzeFinished);
 
     connect(this, SIGNAL(visibilityRawDataChanged(int, bool)),rawDataTab_, SLOT(setVisibility(int, bool)));
     connect(this, SIGNAL(visibilityProcessedDataChanged(int, bool)),processedDataTab_, SLOT(setVisibility(int, bool)));
@@ -545,10 +547,24 @@ void MainWindow::saveDataToFile() {
                 saveProgressDialog->close();
             }
             if (saveList[1] == true) {
-               qDebug() << "Save Analyzed Data";
+                qDebug() << "Save Analyzed Data";
+                analyser_->saveAnalysedData(analysisDataFrames_, filename);
             }
             if (saveList[2] == true) {
-                qDebug() << "Save Event Data";
+                qDebug() << "Save Event Data" << currentEventId_ << &analysisDataFrames_;
+                int idx = -1;
+                for (int i = 0; i<analysisDataFrames_.size();i++)
+                {
+                    if (analysisDataFrames_[i].eventId == currentEventId_)
+                    {
+                        idx = i;
+                        break;
+                    }
+                }
+                if (idx >= 0)
+                {
+                    analyser_->saveEventData(analysisDataFrames_[idx], filename);
+                }
             }
         }
     }

@@ -29,6 +29,11 @@ public:
     QVector<double> zDisplacement;
     QVector<double> absDisplacement;
 
+    double minXAcceleration;
+    double minYAcceleration;
+    double minZAcceleration;
+    double minAbsAcceleration;
+
     double maxXAcceleration;
     double maxYAcceleration;
     double maxZAcceleration;
@@ -39,6 +44,11 @@ public:
     double averageZAcceleration;
     double averageAbsAcceleration;
 
+    double minXVelocity;
+    double minYVelocity;
+    double minZVelocity;
+    double minAbsVelocity;
+
     double maxXVelocity;
     double maxYVelocity;
     double maxZVelocity;
@@ -48,6 +58,11 @@ public:
     double averageYVelocity;
     double averageZVelocity;
     double averageAbsVelocity;
+
+    double minXDisplacement;
+    double minYDisplacement;
+    double minZDisplacement;
+    double minAbsDisplacement;
 
     double maxXDisplacement;
     double maxYDisplacement;

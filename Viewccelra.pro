@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     adxl355data.cpp \
+    analyser.cpp \
     analysisdataframe.cpp \
     datafile.cpp \
     main.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 
 HEADERS += \
     adxl355data.h \
+    analyser.h \
     analysisdataframe.h \
     datafile.h \
     mainwindow.h \

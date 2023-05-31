@@ -9,6 +9,7 @@
 #include "analysisdataframe.h"
 #include "rawdatatab.h"
 #include "processeddatatab.h"
+#include "analyser.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -52,6 +53,7 @@ private:
     QList<int> dataAnalysisStop_;  //index is event id
 
     QList<AnalysisDataFrame> analysisDataFrames_;
+    Analyser *analyser_;
 
     void loadSettings();
     void saveSettings();
