@@ -166,7 +166,7 @@ void Analyser::saveAnalysedData(QList<AnalysisDataFrame> dataFrames, QString fil
                   "averageXDisplacement,averageYDisplacement,averageZDisplacement,averageAbsDisplacement"
                << Qt::endl;
         for (int i=0; i < dataFrames.size(); i++ ) // v1 and v2 better be same size!
-            stream << dataFrames[i].startTimeIdx << "," << dataFrames[i].eventId << ","
+            stream << dataFrames[i].time[dataFrames[i].startTimeIdx] << "," << dataFrames[i].eventId << ","
                    << dataFrames[i].minXAcceleration << "," << dataFrames[i].minYAcceleration << "," << dataFrames[i].minZAcceleration << "," << dataFrames[i].minAbsAcceleration << ","
                    << dataFrames[i].maxXAcceleration << "," << dataFrames[i].maxYAcceleration << "," << dataFrames[i].maxZAcceleration << "," << dataFrames[i].maxAbsAcceleration << ","
                    << dataFrames[i].averageXAcceleration << "," << dataFrames[i].averageYAcceleration << "," << dataFrames[i].averageZAcceleration << "," << dataFrames[i].averageAbsAcceleration << ","
