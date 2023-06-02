@@ -169,10 +169,13 @@ void MainWindow::fillHeaderDataAnalysis() {
     QStringList h({"x","y","z","|abs|"});
     QStringList v({"Start (s)", "Stop (s)", "Max. Acc. (m/s²)",
                                             "Ave. Acc. (m/s²)",
+                                            "Min. Acc. (m/s²)",
                                             "Max. Vel. (m/s)",
                                             "Ave. Vel. (m/s)",
+                                            "Min. Vel. (m/s)",
                                             "Max. Dis. (m)",
-                                            "Ave. Dis. (m)"});
+                                            "Ave. Dis. (m)",
+                                            "Min. Dis. (m)"});
 
     ui->analysisResultTable->setColumnCount(h.size());
     ui->analysisResultTable->setRowCount(v.size());
@@ -228,6 +231,11 @@ void MainWindow::updateDataTable() {
         ui->analysisResultTable->setItem(3,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZAcceleration)));
         ui->analysisResultTable->setItem(3,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsAcceleration)));
 
+        ui->analysisResultTable->setItem(4,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXAcceleration)));
+        ui->analysisResultTable->setItem(4,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYAcceleration)));
+        ui->analysisResultTable->setItem(4,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZAcceleration)));
+        ui->analysisResultTable->setItem(4,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsAcceleration)));
+
         ui->analysisResultTable->setItem(4,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxXVelocity)));
         ui->analysisResultTable->setItem(4,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxYVelocity)));
         ui->analysisResultTable->setItem(4,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxZVelocity)));
@@ -238,6 +246,11 @@ void MainWindow::updateDataTable() {
         ui->analysisResultTable->setItem(5,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZVelocity)));
         ui->analysisResultTable->setItem(5,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsVelocity)));
 
+        ui->analysisResultTable->setItem(6,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXVelocity)));
+        ui->analysisResultTable->setItem(6,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYVelocity)));
+        ui->analysisResultTable->setItem(6,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZVelocity)));
+        ui->analysisResultTable->setItem(6,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsVelocity)));
+
         ui->analysisResultTable->setItem(6,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxXDisplacement)));
         ui->analysisResultTable->setItem(6,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxYDisplacement)));
         ui->analysisResultTable->setItem(6,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxZDisplacement)));
@@ -247,6 +260,11 @@ void MainWindow::updateDataTable() {
         ui->analysisResultTable->setItem(7,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageYDisplacement)));
         ui->analysisResultTable->setItem(7,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZDisplacement)));
         ui->analysisResultTable->setItem(7,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsDisplacement)));
+
+        ui->analysisResultTable->setItem(8,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXDisplacement)));
+        ui->analysisResultTable->setItem(8,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYDisplacement)));
+        ui->analysisResultTable->setItem(8,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZDisplacement)));
+        ui->analysisResultTable->setItem(8,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsDisplacement)));
     } else {
         clearDataCells();   //clear the list, since there is no data available
     }
