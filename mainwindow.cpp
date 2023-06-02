@@ -236,35 +236,35 @@ void MainWindow::updateDataTable() {
         ui->analysisResultTable->setItem(4,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZAcceleration)));
         ui->analysisResultTable->setItem(4,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsAcceleration)));
 
-        ui->analysisResultTable->setItem(4,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxXVelocity)));
-        ui->analysisResultTable->setItem(4,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxYVelocity)));
-        ui->analysisResultTable->setItem(4,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxZVelocity)));
-        ui->analysisResultTable->setItem(4,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxAbsVelocity)));
+        ui->analysisResultTable->setItem(5,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxXVelocity)));
+        ui->analysisResultTable->setItem(5,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxYVelocity)));
+        ui->analysisResultTable->setItem(5,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxZVelocity)));
+        ui->analysisResultTable->setItem(5,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxAbsVelocity)));
 
-        ui->analysisResultTable->setItem(5,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageXVelocity)));
-        ui->analysisResultTable->setItem(5,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageYVelocity)));
-        ui->analysisResultTable->setItem(5,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZVelocity)));
-        ui->analysisResultTable->setItem(5,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsVelocity)));
+        ui->analysisResultTable->setItem(6,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageXVelocity)));
+        ui->analysisResultTable->setItem(6,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageYVelocity)));
+        ui->analysisResultTable->setItem(6,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZVelocity)));
+        ui->analysisResultTable->setItem(6,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsVelocity)));
 
-        ui->analysisResultTable->setItem(6,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXVelocity)));
-        ui->analysisResultTable->setItem(6,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYVelocity)));
-        ui->analysisResultTable->setItem(6,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZVelocity)));
-        ui->analysisResultTable->setItem(6,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsVelocity)));
+        ui->analysisResultTable->setItem(7,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXVelocity)));
+        ui->analysisResultTable->setItem(7,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYVelocity)));
+        ui->analysisResultTable->setItem(7,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZVelocity)));
+        ui->analysisResultTable->setItem(7,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsVelocity)));
 
-        ui->analysisResultTable->setItem(6,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxXDisplacement)));
-        ui->analysisResultTable->setItem(6,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxYDisplacement)));
-        ui->analysisResultTable->setItem(6,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxZDisplacement)));
-        ui->analysisResultTable->setItem(6,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxAbsDisplacement)));
+        ui->analysisResultTable->setItem(8,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxXDisplacement)));
+        ui->analysisResultTable->setItem(8,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxYDisplacement)));
+        ui->analysisResultTable->setItem(8,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxZDisplacement)));
+        ui->analysisResultTable->setItem(8,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].maxAbsDisplacement)));
 
-        ui->analysisResultTable->setItem(7,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageXDisplacement)));
-        ui->analysisResultTable->setItem(7,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageYDisplacement)));
-        ui->analysisResultTable->setItem(7,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZDisplacement)));
-        ui->analysisResultTable->setItem(7,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsDisplacement)));
+        ui->analysisResultTable->setItem(9,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageXDisplacement)));
+        ui->analysisResultTable->setItem(9,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageYDisplacement)));
+        ui->analysisResultTable->setItem(9,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageZDisplacement)));
+        ui->analysisResultTable->setItem(9,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].averageAbsDisplacement)));
 
-        ui->analysisResultTable->setItem(8,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXDisplacement)));
-        ui->analysisResultTable->setItem(8,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYDisplacement)));
-        ui->analysisResultTable->setItem(8,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZDisplacement)));
-        ui->analysisResultTable->setItem(8,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsDisplacement)));
+        ui->analysisResultTable->setItem(10,0, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minXDisplacement)));
+        ui->analysisResultTable->setItem(10,1, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minYDisplacement)));
+        ui->analysisResultTable->setItem(10,2, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minZDisplacement)));
+        ui->analysisResultTable->setItem(10,3, new QTableWidgetItem(QString::number(analysisDataFrames_[idx].minAbsDisplacement)));
     } else {
         clearDataCells();   //clear the list, since there is no data available
     }
@@ -272,7 +272,7 @@ void MainWindow::updateDataTable() {
 
 }
 
-/// @brief Check if current event ID is already analyzed
+/// @brief Check if current event ID is already analyzed, if yes show data
 /// @param eventId - event ID
 /// @return true if exists, false if not in the list
 bool MainWindow::isInAnalyzedList(int eventId) {
@@ -281,9 +281,10 @@ bool MainWindow::isInAnalyzedList(int eventId) {
         if (eventId == analysisDataFrames_[i].eventId)
         {
             retval = true;
+            emit dataFrameChanged(analysisDataFrames_[i]);
             break;
         }
-    }
+    }    
     return retval;
 }
 
