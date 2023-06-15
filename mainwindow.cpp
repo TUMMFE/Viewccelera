@@ -567,7 +567,7 @@ void MainWindow::saveDataToFile() {
             }
             if (saveList[1] == true) {
                 qDebug() << "Save Analyzed Data";
-                analyser_->saveAnalysedData(analysisDataFrames_, filename);
+                analyser_->saveAnalysedData(analysisDataFrames_, analyzedFileName);
             }
             if (saveList[2] == true) {
                 qDebug() << "Save Event Data" << currentEventId_ << &analysisDataFrames_;
@@ -582,7 +582,7 @@ void MainWindow::saveDataToFile() {
                 }
                 if (idx >= 0)
                 {
-                    analyser_->saveEventData(analysisDataFrames_[idx], filename);
+                    analyser_->saveEventData(analysisDataFrames_[idx], eventDataFileName);
                 }
             }
         }
