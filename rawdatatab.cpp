@@ -31,7 +31,13 @@ void RawDataTab::setData(DataFile *data) {
     data_ = data;
     eventStartTimes_ = data_->getEventStartTimes();
     eventStopTimes_ = data_->getEventStopTimes();
-
+    overviewPlot_->graph(0)->data()->clear();
+    overviewPlot_->replot();
+    eventPlot_->graph(0)->data()->clear();
+    eventPlot_->graph(1)->data()->clear();
+    eventPlot_->graph(2)->data()->clear();
+    eventPlot_->graph(3)->data()->clear();
+    eventPlot_->replot();
     createPlotData();
     updateOverviewPlot();
     updateEventPlot(currentEventId_); //show first event
