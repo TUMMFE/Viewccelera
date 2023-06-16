@@ -12,6 +12,30 @@ Analyser::Analyser(QObject *parent)
 
 }
 
+void Analyser::startDataProcessing(DataFile *dataFile)
+{
+//    QProgressDialog *saveProgressDialog = new QProgressDialog();
+//    connect(dataFile_, &DataFile::progressSavingData, saveProgressDialog, &QProgressDialog::setValue);
+
+    for (int i =0; i<dataFile->startTimeIdx.length();i++)
+    {
+        int startIdx = dataFile->startTimeIdx[i];
+        int length = dataFile->stopTimeIdx[i] - startIdx;
+        dataFile->xVelocity.append(integrateTrapezoidal(dataFile->time.mid(startIdx, length), dataFile->xAcceleration.mid(startIdx, length)));
+        dataFile->yVelocity.append(integrateTrapezoidal(dataFile->time.mid(startIdx, length), dataFile->yAcceleration.mid(startIdx, length)));
+        dataFile->zVelocity.append(integrateTrapezoidal(dataFile->time.mid(startIdx, length), dataFile->zAcceleration.mid(startIdx, length)));
+
+        dataFile->xDisplacement.append(integrateTrapezoidal(dataFile->time.mid(startIdx, length), dataFile->xVelocity.mid(startIdx, length)));
+        dataFile->yDisplacement.append(integrateTrapezoidal(dataFile->time.mid(startIdx, length), dataFile->yVelocity.mid(startIdx, length)));
+        dataFile->zDisplacement.append(integrateTrapezoidal(dataFile->time.mid(startIdx, length), dataFile->zVelocity.mid(startIdx, length)));
+    }
+    dataFile->absVelocity = getAbs(dataFile->xVelocity, dataFile->yVelocity, dataFile->zVelocity);
+    dataFile->absDisplacement = getAbs(dataFile->xDisplacement, dataFile->yDisplacement, dataFile->zDisplacement);
+
+    //dataFile->xAcceleration = movingAverage(dataFile->xAcceleration, 51);
+}
+
+
 void Analyser::startAnalysis(AnalysisDataFrame dataFrame)
 {
     AnalysisDataFrame dF = dataFrame;
@@ -42,14 +66,9 @@ void Analyser::startAnalysis(AnalysisDataFrame dataFrame)
     dF.averageZAcceleration = std::accumulate(zAccelerationSelection.begin(), zAccelerationSelection.end(), .0) / zAccelerationSelection.length();
     dF.averageAbsAcceleration = std::accumulate(absAccelerationSelection.begin(), absAccelerationSelection.end(), .0) / absAccelerationSelection.length();
 
-    dF.xVelocity = integrateTrapezoidal(dF.time, dF.xAcceleration);
-    dF.yVelocity = integrateTrapezoidal(dF.time, dF.yAcceleration);
-    dF.zVelocity = integrateTrapezoidal(dF.time, dF.zAcceleration);
-    dF.absVelocity = getAbs(dF.xVelocity, dF.yVelocity, dF.zVelocity);
-
-    QVector<double> xVelocitySelection = integrateTrapezoidal(timeSelection, xAccelerationSelection);
-    QVector<double> yVelocitySelection = integrateTrapezoidal(timeSelection, yAccelerationSelection);
-    QVector<double> zVelocitySelection = integrateTrapezoidal(timeSelection, zAccelerationSelection);
+    QVector<double> xVelocitySelection = dF.xVelocity.mid(startIdx, idxLength);
+    QVector<double> yVelocitySelection = dF.yVelocity.mid(startIdx, idxLength);
+    QVector<double> zVelocitySelection = dF.zVelocity.mid(startIdx, idxLength);
     QVector<double> absVelocitySelection = getAbs(xVelocitySelection, yVelocitySelection, zVelocitySelection);
     dF.minXVelocity = *std::min_element(xVelocitySelection.begin(), xVelocitySelection.end());
     dF.minYVelocity = *std::min_element(yVelocitySelection.begin(), yVelocitySelection.end());
@@ -64,14 +83,9 @@ void Analyser::startAnalysis(AnalysisDataFrame dataFrame)
     dF.averageZVelocity = std::accumulate(zVelocitySelection.begin(), zVelocitySelection.end(), .0) / zVelocitySelection.length();
     dF.averageAbsVelocity = std::accumulate(absVelocitySelection.begin(), absVelocitySelection.end(), .0) / absVelocitySelection.length();
 
-    dF.xDisplacement = integrateTrapezoidal(dF.time, dF.xVelocity);
-    dF.yDisplacement = integrateTrapezoidal(dF.time, dF.yVelocity);
-    dF.zDisplacement = integrateTrapezoidal(dF.time, dF.zVelocity);
-    dF.absDisplacement = getAbs(dF.xDisplacement, dF.yDisplacement, dF.zDisplacement);
-
-    QVector<double> xDisplacementSelection = integrateTrapezoidal(timeSelection, xVelocitySelection);
-    QVector<double> yDisplacementSelection = integrateTrapezoidal(timeSelection, yVelocitySelection);
-    QVector<double> zDisplacementSelection = integrateTrapezoidal(timeSelection, zVelocitySelection);
+    QVector<double> xDisplacementSelection = dF.xDisplacement.mid(startIdx, idxLength);
+    QVector<double> yDisplacementSelection = dF.yDisplacement.mid(startIdx, idxLength);
+    QVector<double> zDisplacementSelection = dF.zDisplacement.mid(startIdx, idxLength);
     QVector<double> absDisplacementSelection = getAbs(xDisplacementSelection, yDisplacementSelection, zDisplacementSelection);
     dF.minXDisplacement = *std::min_element(xDisplacementSelection.begin(), xDisplacementSelection.end());
     dF.minYDisplacement = *std::min_element(yDisplacementSelection.begin(), yDisplacementSelection.end());
@@ -92,7 +106,7 @@ void Analyser::startAnalysis(AnalysisDataFrame dataFrame)
 QVector<double> Analyser::integrateTrapezoidal(QVector<double> time, QVector<double> data)
 {
     QVector<double> integral;
-    for (int i = 0; i<time.length()-1; i++)
+    for (int i = 0; i<=time.length()-1; i++)
     {
         double currentValue = ( (data[i] + data[i+1]) / 2 ) * (time[i+1]-time[i]);
         if (i == 0)
@@ -184,4 +198,25 @@ void Analyser::saveAnalysedData(QList<AnalysisDataFrame> dataFrames, QString fil
 bool Analyser::compare(const AnalysisDataFrame& i, const AnalysisDataFrame& j)
 {
     return i.eventId < j.eventId;
+}
+
+QVector<double> Analyser::movingAverage(QVector<double> data, int order)
+{
+    QVector<double> averagedData;
+    for (int i; i<=data.length(); i++)
+    {
+        if (i < order)
+        {
+            averagedData.append(std::accumulate(data.begin()+i, data.end()+i+order, 0.) /data.mid(i,i+order).length());
+        }
+        else if ((i+order)>data.length())
+        {
+            averagedData.append(std::accumulate(data.begin()+i-order, data.end()+i, 0.) /data.mid(i-order,i).length());
+        }
+        else
+        {
+            averagedData.append(std::accumulate(data.begin()+i-order, data.end()+i+order, 0.) /data.mid(i-order,i+order).length());  // TODO: order/2??
+        }
+    }
+    return averagedData;
 }

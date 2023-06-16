@@ -121,31 +121,31 @@ AnalysisDataFrame DataFile::getAnalysisDataFrame(int idx) {
     frame.yAcceleration = {yAcceleration.begin()+startTimeIdx[frame.eventId], yAcceleration.begin()+stopTimeIdx[frame.eventId]};
     frame.zAcceleration = {zAcceleration.begin()+startTimeIdx[frame.eventId], zAcceleration.begin()+stopTimeIdx[frame.eventId]};
     frame.absAcceleration = {absAcceleration.begin()+startTimeIdx[frame.eventId], absAcceleration.begin()+stopTimeIdx[frame.eventId]};
+
+    frame.xVelocity = {xVelocity.begin()+startTimeIdx[frame.eventId], xVelocity.begin()+stopTimeIdx[frame.eventId]};
+    frame.yVelocity = {yVelocity.begin()+startTimeIdx[frame.eventId], yVelocity.begin()+stopTimeIdx[frame.eventId]};
+    frame.zVelocity = {zVelocity.begin()+startTimeIdx[frame.eventId], zVelocity.begin()+stopTimeIdx[frame.eventId]};
+    frame.absVelocity = {absVelocity.begin()+startTimeIdx[frame.eventId], absVelocity.begin()+stopTimeIdx[frame.eventId]};
+
+    frame.xDisplacement = {xDisplacement.begin()+startTimeIdx[frame.eventId], xDisplacement.begin()+stopTimeIdx[frame.eventId]};
+    frame.yDisplacement = {yDisplacement.begin()+startTimeIdx[frame.eventId], yDisplacement.begin()+stopTimeIdx[frame.eventId]};
+    frame.zDisplacement = {zDisplacement.begin()+startTimeIdx[frame.eventId], zDisplacement.begin()+stopTimeIdx[frame.eventId]};
+    frame.absDisplacement = {absDisplacement.begin()+startTimeIdx[frame.eventId], absDisplacement.begin()+stopTimeIdx[frame.eventId]};
+
     frame.temperature = {temperature.begin()+startTimeIdx[frame.eventId], temperature.begin()+stopTimeIdx[frame.eventId]};
     frame.time = {time.begin()+startTimeIdx[frame.eventId], time.begin()+stopTimeIdx[frame.eventId]};
 
+//    for (int i = 0; i < frame.time.size(); i++) {
+//        frame.xVelocity[i] = QRandomGenerator::global()->bounded(5)-2.5;
+//        frame.yVelocity[i] = QRandomGenerator::global()->bounded(3)-2.5;
+//        frame.zVelocity[i] = QRandomGenerator::global()->bounded(7)-2.5;
+//        frame.absVelocity[i] = QRandomGenerator::global()->bounded(1)-2.5;
 
-    frame.xVelocity.resize(frame.time.size());
-    frame.yVelocity.resize(frame.time.size());
-    frame.zVelocity.resize(frame.time.size());
-    frame.absVelocity.resize(frame.time.size());
-
-    frame.xDisplacement.resize(frame.time.size());
-    frame.yDisplacement.resize(frame.time.size());
-    frame.zDisplacement.resize(frame.time.size());
-    frame.absDisplacement.resize(frame.time.size());
-
-    for (int i = 0; i < frame.time.size(); i++) {
-        frame.xVelocity[i] = QRandomGenerator::global()->bounded(5)-2.5;
-        frame.yVelocity[i] = QRandomGenerator::global()->bounded(3)-2.5;
-        frame.zVelocity[i] = QRandomGenerator::global()->bounded(7)-2.5;
-        frame.absVelocity[i] = QRandomGenerator::global()->bounded(1)-2.5;
-
-        frame.xDisplacement[i] = QRandomGenerator::global()->bounded(4)-2.5;
-        frame.yDisplacement[i] = QRandomGenerator::global()->bounded(2)-2.5;
-        frame.zDisplacement[i] = QRandomGenerator::global()->bounded(8)-2.5;
-        frame.absDisplacement[i] = QRandomGenerator::global()->bounded(3)-2.5;
-    }
+//        frame.xDisplacement[i] = QRandomGenerator::global()->bounded(4)-2.5;
+//        frame.yDisplacement[i] = QRandomGenerator::global()->bounded(2)-2.5;
+//        frame.zDisplacement[i] = QRandomGenerator::global()->bounded(8)-2.5;
+//        frame.absDisplacement[i] = QRandomGenerator::global()->bounded(3)-2.5;
+//    }
 
     frame.maxXAcceleration = 0.0;
     frame.maxYAcceleration = 0.0;

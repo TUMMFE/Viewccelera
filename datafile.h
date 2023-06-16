@@ -33,6 +33,14 @@ public:
     QVector<double> yAcceleration;
     QVector<double> zAcceleration;
     QVector<double> absAcceleration;
+    QVector<double> xVelocity;
+    QVector<double> yVelocity;
+    QVector<double> zVelocity;
+    QVector<double> absVelocity;
+    QVector<double> xDisplacement;
+    QVector<double> yDisplacement;
+    QVector<double> zDisplacement;
+    QVector<double> absDisplacement;
     QVector<double> temperature;
     QVector<int> startTimeIdx;
     QVector<int> stopTimeIdx;

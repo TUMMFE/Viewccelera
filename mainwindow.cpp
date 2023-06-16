@@ -340,6 +340,7 @@ void MainWindow::openFile() {
             stopTimes_ = dataFile_->getEventStopTimes();
             eventIds_ = dataFile_->getEventIds();
             currentEventId_ = 0;
+            analyser_->startDataProcessing(dataFile_);
 
             //enable the toolbar actions
             ui->actionOpen->setEnabled(true);
