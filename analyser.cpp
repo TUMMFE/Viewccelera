@@ -31,19 +31,46 @@ void Analyser::startDataProcessing(DataFile *dataFile)
     }
     dataFile->absVelocity = getAbs(dataFile->xVelocity, dataFile->yVelocity, dataFile->zVelocity);
     dataFile->absDisplacement = getAbs(dataFile->xDisplacement, dataFile->yDisplacement, dataFile->zDisplacement);
-
-    //dataFile->xAcceleration = movingAverage(dataFile->xAcceleration, 51);
 }
 
+void Analyser::filterAllData(DataFile *dataFile)
+{
+    emit progressFilterData(10);
+    dataFile->xAcceleration = movingAverage(dataFile->xAcceleration, 51);
+    emit progressFilterData(20);
+    dataFile->yAcceleration = movingAverage(dataFile->yAcceleration, 51);
+    emit progressFilterData(30);
+    dataFile->zAcceleration = movingAverage(dataFile->zAcceleration, 51);
+    emit progressFilterData(40);
+    dataFile->absAcceleration = getAbs(dataFile->xAcceleration, dataFile->yAcceleration, dataFile->zAcceleration);
+
+    dataFile->xVelocity = movingAverage(dataFile->xVelocity, 51);
+    emit progressFilterData(50);
+    dataFile->yVelocity = movingAverage(dataFile->yVelocity, 51);
+    emit progressFilterData(60);
+    dataFile->zVelocity = movingAverage(dataFile->zVelocity, 51);
+    emit progressFilterData(70);
+    dataFile->absVelocity = getAbs(dataFile->xVelocity, dataFile->yVelocity, dataFile->zVelocity);
+
+    dataFile->xDisplacement = movingAverage(dataFile->xDisplacement, 51);
+    emit progressFilterData(80);
+    dataFile->yDisplacement = movingAverage(dataFile->yDisplacement, 51);
+    emit progressFilterData(90);
+    dataFile->zDisplacement = movingAverage(dataFile->zDisplacement, 51);
+    emit progressFilterData(100);
+    dataFile->absDisplacement = getAbs(dataFile->xDisplacement, dataFile->yDisplacement, dataFile->zDisplacement);
+}
 
 void Analyser::startAnalysis(AnalysisDataFrame dataFrame)
 {
     AnalysisDataFrame dF = dataFrame;
     if (dF.startTimeIdx > dF.stopTimeIdx)
     {
+        int startTimeIdx = dF.startTimeIdx;
         dF.startTimeIdx = dF.stopTimeIdx;
-        dF.stopTimeIdx = dF.startTimeIdx;
+        dF.stopTimeIdx = startTimeIdx;
     }
+
     int startIdx = dF.startTimeIdx;
     int idxLength = dF.stopTimeIdx - dF.startTimeIdx;
 
@@ -203,19 +230,19 @@ bool Analyser::compare(const AnalysisDataFrame& i, const AnalysisDataFrame& j)
 QVector<double> Analyser::movingAverage(QVector<double> data, int order)
 {
     QVector<double> averagedData;
-    for (int i; i<=data.length(); i++)
+    for (int i = 0; i<=data.size(); i++)
     {
         if (i < order)
         {
-            averagedData.append(std::accumulate(data.begin()+i, data.end()+i+order, 0.) /data.mid(i,i+order).length());
+            averagedData.append(std::accumulate(data.begin()+i, data.begin()+i+order, 0.) /data.mid(i,i+order).size());
         }
-        else if ((i+order)>data.length())
+        else if ((i+order)>data.size())
         {
-            averagedData.append(std::accumulate(data.begin()+i-order, data.end()+i, 0.) /data.mid(i-order,i).length());
+            averagedData.append(std::accumulate(data.begin()+i-order, data.begin()+i, 0.) /data.mid(i-order,i).size());
         }
         else
         {
-            averagedData.append(std::accumulate(data.begin()+i-order, data.end()+i+order, 0.) /data.mid(i-order,i+order).length());  // TODO: order/2??
+            averagedData.append(std::accumulate(data.begin()+i-order/2, data.begin()+i+order/2, 0.) /data.mid(i-order/2,i+order/2).size());
         }
     }
     return averagedData;
