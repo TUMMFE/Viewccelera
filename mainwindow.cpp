@@ -341,6 +341,7 @@ void MainWindow::openFile() {
             eventIds_ = dataFile_->getEventIds();
             currentEventId_ = 0;
             analyser_->startDataProcessing(dataFile_);
+            //analyser_->filterAllData(dataFile_);
 
             //enable the toolbar actions
             ui->actionOpen->setEnabled(true);
