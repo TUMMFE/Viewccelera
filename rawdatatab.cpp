@@ -157,6 +157,7 @@ void RawDataTab::prepareOverviewPlot() {
     overviewPlot_->plotLayout()->insertRow(0);
     overviewPlot_->plotLayout()->addElement(0, 0, new QCPTextElement(overviewPlot_, "Overview |a|", QFont("sans", 12, QFont::Bold)));
 
+
     // make left and bottom axes transfer their ranges to right and top axes:
     connect(overviewPlot_->xAxis, SIGNAL(rangeChanged(QCPRange)), overviewPlot_->xAxis2, SLOT(setRange(QCPRange)));
     connect(overviewPlot_->yAxis, SIGNAL(rangeChanged(QCPRange)), overviewPlot_->yAxis2, SLOT(setRange(QCPRange)));
@@ -203,10 +204,10 @@ void RawDataTab::prepareEventPlot() {
     eventPlot_->graph(3)->setVisible(false);
     visibilityList_.append(false);
 
-    eventLabelText_ = new QCPItemText(eventPlot_);
+    eventLabelText_ = new QCPItemText(overviewPlot_);
     eventLabelText_->position->setType(QCPItemPosition::ptAxisRectRatio);
-    eventLabelText_->setPositionAlignment(Qt::AlignRight|Qt::AlignBottom);
-    eventLabelText_->position->setCoords(0.95, 0.95); // lower right corner of axis rect
+    eventLabelText_->setPositionAlignment(Qt::AlignTop|Qt::AlignHCenter);
+    eventLabelText_->position->setCoords(0.5, 0.0); // lower right corner of axis rect
 
     eventLabelText_->setTextAlignment(Qt::AlignLeft);
     eventLabelText_->setFont(QFont(font().family(), 46));
@@ -286,11 +287,12 @@ void RawDataTab::updateEventPlot(int eventId) {
     }
 
     if ((eventStartTimes_.size() > 0) && (eventStopTimes_.size() >0)) {
-        eventLabelText_->setText(QString::number(eventId));
+        eventLabelText_->setText("Event ID: "+ QString::number(eventId));
         eventPlot_->xAxis->setRange(eventStartTimes_[eventId], eventStopTimes_[eventId]);
         eventPlot_->yAxis->setRange(getMinRange(eventId)*1.1, getMaxRange(eventId)*1.1);
     }
     eventPlot_->replot();
+    overviewPlot_->replot(); //rewrite the ID number.
 }
 
 /// @brief Calculate the minimum value of the current event id
