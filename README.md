@@ -1,6 +1,6 @@
 # Viewccelera
 
-
+Software tool to display and safe data from acceleration sensor. Capable of measuring protocols.
 
 ## Getting started
 
