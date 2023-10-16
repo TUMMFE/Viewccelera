@@ -2,11 +2,16 @@
 
 Software tool to display and safe data from acceleration sensor. Capable of measuring protocols.
 
-## Getting started
+## Features
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+- Viewer for data files from Accelera Software
+- Open *.csv and *.time file from Accelera  (corresponding *.csv and *.time file must be in the same directory)
+- Plots an overview plot (absolute value of acceleration) and plots single event data
+- User can select start and stop points in the event data plot for automatic data analysis for eacht single event
+- Export of plots as *.png files
+- Export of data as *.csv files
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+
 
 ## Add your files
 
