@@ -12,7 +12,6 @@ Software tool to display and safe data from acceleration sensor. Capable of meas
 - Export of data as *.csv files
 
 
-
 ## Add your files
 
 - [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
